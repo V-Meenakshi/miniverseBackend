@@ -12,7 +12,7 @@ ARG SERVER_PORT=8080
 # Set the arguments as environment variables for the application to use at runtime.
 ENV SPRING_DATA_MONGODB_URI=$MONGODB_URI
 ENV JWT_SECRET=$JWT_SECRET
-ENV JWT_EXPIRATION_MS=$JWT_EXPIRATION_MS # <-- AND ADD THIS LINE
+ENV JWT_EXPIRATION_MS=$JWT_EXPIRATION_MS 
 ENV SERVER_PORT=$SERVER_port
 
 # Copy the executable JAR file from the 'builder' stage
