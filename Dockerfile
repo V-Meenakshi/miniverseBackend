@@ -1,12 +1,12 @@
 # Stage 2: Create the final, lightweight runtime image
-FROM eclipse-temurin:17-jre-alpine
+FROM eclipse-temurin:17-jdk-alpine as build-stage
 
 WORKDIR /app
 
 # Define arguments that can be passed during the Docker build.
 ARG MONGODB_URI
 ARG JWT_SECRET
-ARG JWT_EXPIRATION_MS  # <-- ADD THIS LINE
+ARG JWT_EXPIRATION_MS  
 ARG SERVER_PORT=8080
 
 # Set the arguments as environment variables for the application to use at runtime.
