@@ -149,13 +149,16 @@ public class BlogPostServiceImpl implements BlogPostService {
                 if (publishAt.isAfter(Instant.now())) {
                     blogPost.setStatus(PostStatus.SCHEDULED);
                     blogPost.setPublishAt(publishAt);
+                    // blogPost.setTimeCapsule(true); // Set the flag here
                 } else {
                     blogPost.setStatus(PostStatus.PUBLISHED);
                     blogPost.setPublishAt(Instant.now());
+                    // blogPost.setTimeCapsule(false);
                 }
             } else {
                 blogPost.setStatus(PostStatus.PUBLISHED);
                 blogPost.setPublishAt(Instant.now());
+                // blogPost.setTimeCapsule(false);
             }
         }
 

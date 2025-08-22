@@ -39,6 +39,8 @@ public class BlogPost {
     @JsonProperty("isPrivate")
     private boolean isPrivate; // Whether the post is private (only visible to author) or public
 
+    // private boolean isTimeCapsule; // Add this line
+
     private int likesCount; // Number of likes on the post
 
     private int commentsCount; // Number of comments on the post
