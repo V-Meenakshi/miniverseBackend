@@ -73,4 +73,19 @@ public interface BlogPostRepository extends MongoRepository<BlogPost, String> {
      * @param authorId The ID of the author whose posts should be deleted.
      */
     void deleteByAuthorId(String authorId);
+    // Add this new method to your BlogPostRepository
+    Page<BlogPost> findByAuthorIdAndStatus(String authorId, PostStatus status, Pageable pageable);
+    // Add this new method to your BlogPostRepository
+    Page<BlogPost> findByAuthorIdAndIsPrivate(String authorId, boolean isPrivate, Pageable pageable);   
+    /**
+     * Finds a paginated list of posts by a specific author and a list of statuses.
+     * This is the key to excluding time capsules from the "My Blogs" page.
+     *
+     * @param authorId The ID of the author.
+     * @param statuses A list of statuses to include (e.g., PUBLISHED, DRAFT).
+     * @param pageable Pagination and sorting information.
+     * @return A Page of the author's posts with the specified statuses.
+     */
+    Page<BlogPost> findByAuthorIdAndStatusIn(String authorId, List<PostStatus> statuses, Pageable pageable);
+
 }

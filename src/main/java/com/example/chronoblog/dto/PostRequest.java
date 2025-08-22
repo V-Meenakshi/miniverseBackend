@@ -10,7 +10,7 @@ public class PostRequest {
     private String content;
     private String publishAt;
     private String status;
-    private String fileUrl;
+    // private String fileUrl;
     
     @JsonProperty("isPrivate")
     private boolean isPrivate;

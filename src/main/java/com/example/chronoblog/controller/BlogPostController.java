@@ -135,4 +135,30 @@ public class BlogPostController {
         blogPostService.deleteComment(commentId, userDetails);
         return ResponseEntity.noContent().build();
     }
+    // Add this new method to your BlogPostController
+
+    @GetMapping("/time-capsules")
+    @PreAuthorize("hasAuthority('ROLE_BLOGGER')")
+    public Page<BlogPost> getCurrentUserTimeCapsules(@AuthenticationPrincipal UserDetails userDetails, Pageable pageable) {
+        User user = userRepository.findByEmail(userDetails.getUsername())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+        return blogPostService.getTimeCapsulesByAuthor(user.getId(), pageable);
+    }
+    // Add these two new methods to your BlogPostController
+
+    @GetMapping("/me/public")
+    @PreAuthorize("hasAuthority('ROLE_BLOGGER')")
+    public Page<BlogPost> getCurrentUserPublicPosts(@AuthenticationPrincipal UserDetails userDetails, Pageable pageable) {
+        User user = userRepository.findByEmail(userDetails.getUsername())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+        return blogPostService.getPublicPostsByAuthor(user.getId(), pageable);
+    }
+
+    @GetMapping("/me/private")
+    @PreAuthorize("hasAuthority('ROLE_BLOGGER')")
+    public Page<BlogPost> getCurrentUserPrivatePosts(@AuthenticationPrincipal UserDetails userDetails, Pageable pageable) {
+        User user = userRepository.findByEmail(userDetails.getUsername())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+        return blogPostService.getPrivatePostsByAuthor(user.getId(), pageable);
+    }
 }

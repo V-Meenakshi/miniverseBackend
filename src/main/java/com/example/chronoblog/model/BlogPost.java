@@ -45,11 +45,12 @@ public class BlogPost {
 
     private Set<String> likedBy; // Set of user IDs who liked this post
     
-    private String fileUrl; // To store the URL of the uploaded file
+    // private String fileUrl; // To store the URL of the uploaded file
 
     @CreatedDate // Automatically populated by Spring Data MongoDB when the document is first saved.
     private Instant createdAt;
 
     @LastModifiedDate // Automatically populated by Spring Data MongoDB when the document is updated.
     private Instant updatedAt;
+    
 }
